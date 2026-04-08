@@ -1,0 +1,16 @@
+{
+  "name": "pluton-learning-platform",
+  "version": "1.0.0",
+  "description": "AI-Powered Learning Platform with FastAPI backend and React frontend",
+  "scripts": {
+    "dev": "echo 'Use docker-compose for development'",
+    "build": "echo 'Monorepo - build services separately'",
+    "start": "echo 'Use docker-compose to start services'"
+  },
+  "keywords": ["education", "ai", "learning", "fastapi", "react"],
+  "author": "AdixMeena",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

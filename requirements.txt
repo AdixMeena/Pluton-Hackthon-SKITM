@@ -1,0 +1,4 @@
+# Root requirements.txt for DigitalOcean detection
+# Actual dependencies are in backend/requirements.txt
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
