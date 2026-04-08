@@ -28,64 +28,63 @@
 
 ---
 
-## 🚀 DigitalOcean App Platform Deployment
+## 🚀 Vercel + Render Deployment
 
-### Step 1: DigitalOcean Setup
-1. Go to [digitalocean.com](https://digitalocean.com) and create an account
-2. Go to **App Platform** → **Create App**
-3. Choose **GitHub** as source
-4. Connect your GitHub account and select `AdixMeena/Pluton-Full` repository
-5. Choose the **main** branch
+### Frontend: Vercel | Backend: Render
 
-### Step 2: Configure Services Manually
+### Step 1: Deploy Backend to Render
 
-Since this is a monorepo, you'll need to configure each service manually:
+1. Go to [render.com](https://render.com) and create an account
+2. Click **"New"** → **"Web Service"**
+3. Connect your GitHub account and select `AdixMeena/Pluton-Full`
+4. Configure build settings:
+   - **Root Directory**: `backend`
+   - **Runtime**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
 
-#### **Add Backend Service:**
-1. Click **"+ Add Component"** → **"Service"**
-2. **Service Name**: `backend`
-3. **Source Directory**: `backend`
-4. **Environment**: `Python`
-5. **Run Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-6. **Instance Count**: `1`
-7. **Instance Size**: `Basic XXS`
-
-#### **Add Frontend Service:**
-1. Click **"+ Add Component"** → **"Static Site"** (or **"Service"**)
-2. **Service Name**: `frontend`
-3. **Source Directory**: `frontend`
-4. **Environment**: `Node.js`
-5. **Build Command**: `npm run build`
-6. **Run Command**: `npm run preview -- --host 0.0.0.0 --port $PORT`
-7. **Instance Count**: `1`
-8. **Instance Size**: `Basic XXS`
-
-### Step 3: Environment Variables
-
-#### **Global Environment Variables** (apply to all services):
+5. Add environment variables:
 ```
 SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-```
-
-#### **Backend Service Variables:**
-```
-SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 GROQ_API_KEY=your-groq-api-key
-FRONTEND_URL=https://your-app-name.ondigitalocean.app
+FRONTEND_URL=https://your-frontend-app.vercel.app
 ```
 
-#### **Frontend Service Variables:**
+6. Click **"Create Web Service"**
+7. **Copy the backend URL** (e.g., `https://your-app.onrender.com`)
+
+### Step 2: Deploy Frontend to Vercel
+
+1. Go to [vercel.com](https://vercel.com) and create an account
+2. Click **"New Project"**
+3. Import your GitHub repository `AdixMeena/Pluton-Full`
+4. Configure project:
+   - **Root Directory**: `frontend`
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+
+5. Add environment variables:
 ```
-VITE_BACKEND_URL=https://your-app-name-backend.ondigitalocean.app
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+VITE_BACKEND_URL=https://your-backend-app.onrender.com
 ```
 
-### Step 4: Deploy
-1. Click **Create App**
-2. DigitalOcean will build and deploy both services
-3. Your app will be live at:
-   - **Frontend**: `https://your-app-name.ondigitalocean.app`
-   - **Backend API**: `https://your-app-name-backend.ondigitalocean.app`
+6. Click **"Deploy"**
+7. Your frontend will be live at `https://your-app.vercel.app`
+
+### Step 3: Update Backend Environment Variable
+
+Go back to Render and update:
+```
+FRONTEND_URL=https://your-frontend-app.vercel.app
+```
+
+### 🎯 Final Result:
+- **Frontend**: `https://your-app.vercel.app`
+- **Backend API**: `https://your-app.onrender.com`
 
 ---
 
