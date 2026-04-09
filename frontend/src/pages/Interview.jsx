@@ -6,6 +6,8 @@ import { User, Sparkles, ArrowRight, ArrowLeft, CheckCircle, MessageCircle } fro
 
 const QUESTIONS = [
   {
+
+    
     id: 'learning_style',
     question: 'How do you prefer to learn new concepts?',
     options: [
