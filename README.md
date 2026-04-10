@@ -319,7 +319,6 @@ src/
 │   ├── Landing.jsx        # Public landing page
 │   ├── Auth.jsx           # Login / Signup
 │   ├── Dashboard.jsx      # Home with subjects & stats
-│   ├── YTSummarizer.jsx   # YouTube → AI notes
 │   ├── PDFExtractor.jsx   # PDF → notes + Q&A
 │   ├── QuizLab.jsx        # Quiz generator + taker
 │   ├── DoubtFinisher.jsx  # AI chat
