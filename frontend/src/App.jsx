@@ -14,6 +14,7 @@ import Roadmap from './pages/Roadmap'
 import TodoJournal from './pages/TodoJournal'
 import Profile from './pages/Profile'
 import Interview from './pages/Interview'
+import ChatHistory from './pages/ChatHistory'
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="pdf" element={<PDFExtractor />} />
             <Route path="quiz" element={<QuizLab />} />
             <Route path="chat" element={<DoubtFinisher />} />
+            <Route path="chat-history" element={<ChatHistory />} />
             <Route path="roadmap" element={<Roadmap />} />
             <Route path="todo" element={<TodoJournal />} />
             <Route path="profile" element={<Profile />} />

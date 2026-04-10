@@ -191,6 +191,16 @@ Output Format:
 async def health_check():
     return {"status": "healthy"}
 
+# Get chat history for a user
+@app.get("/chat-history/{user_id}")
+async def get_chat_history(user_id: str):
+    try:
+        supabase = get_supabase()
+        response = supabase.table('chat_messages').select('*').eq('user_id', user_id).order('created_at', desc=False).execute()
+        return {"messages": response.data}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Generate personalized learning profile
 @app.post("/generate-profile")
 async def generate_learning_profile(request: dict):

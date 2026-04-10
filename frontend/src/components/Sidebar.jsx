@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import {
   LayoutDashboard, FileText, Brain, MessageCircle,
-  Map, CheckSquare, User, LogOut, Zap, BookOpen
+  Map, CheckSquare, User, LogOut, Zap, BookOpen, History
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -11,6 +11,7 @@ const navItems = [
   { to: '/pdf', icon: FileText, label: 'PDF Notes' },
   { to: '/quiz', icon: Brain, label: 'Quiz Lab' },
   { to: '/chat', icon: MessageCircle, label: 'Doubt Finisher' },
+  { to: '/chat-history', icon: History, label: 'Chat History' },
   { to: '/roadmap', icon: Map, label: 'Roadmap' },
   { to: '/todo', icon: CheckSquare, label: 'To-Do & Journal' },
   { to: '/profile', icon: User, label: 'Profile' },
