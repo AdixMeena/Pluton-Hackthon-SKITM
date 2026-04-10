@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/clients'
 import toast from 'react-hot-toast'
-import { User, Zap, Flame, Brain, FileText, Save, Edit2, BarChart2, Star, Trophy, Sparkles, RefreshCw, MessageCircle } from 'lucide-react'
+import { User, Zap, Flame, Brain, FileText, Youtube, Save, Edit2, BarChart2, Star, Trophy, Sparkles, RefreshCw, MessageCircle } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -157,6 +157,7 @@ export default function Profile() {
   }
 
   const achievements = [
+    { icon: '🎥', label: 'Video Learner', desc: 'Summarize 5 videos', done: stats.yt >= 5 },
     { icon: '📄', label: 'PDF Master', desc: 'Analyze 3 PDFs', done: stats.pdf >= 3 },
     { icon: '🧠', label: 'Quiz Champion', desc: 'Complete 10 quizzes', done: stats.quiz >= 10 },
     { icon: '📚', label: 'Subject Builder', desc: 'Add 3 subjects', done: stats.subjects >= 3 },
@@ -230,8 +231,9 @@ export default function Profile() {
               </div>
             </div>
           ) : (
-            [
-              { label: 'PDFs', value: stats.pdf, color: '#a78bfa', icon: '📄' },
+            <>
+              {profile?.bio && <p style={{ color: '#64748b', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: 16 }}>{profile.bio}</p>}
+              {/* XP bar */}
               <div style={{ marginTop: 16 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
