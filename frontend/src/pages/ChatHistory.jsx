@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
+import { supabase } from '../lib/clients'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -11,17 +12,21 @@ export default function ChatHistory() {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(true)
   const [groupedMessages, setGroupedMessages] = useState({})
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
-
   useEffect(() => {
     if (user?.id) fetchChatHistory()
   }, [user?.id])
 
   async function fetchChatHistory() {
     try {
-      const response = await fetch(`${backendUrl}/chat-history/${user.id}`)
-      const data = await response.json()
-      const items = data?.messages || []
+      const { data, error } = await supabase
+        .from('chat_messages')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: true })
+
+      if (error) throw error
+
+      const items = data || []
       setMessages(items)
 
       // Group messages by date
