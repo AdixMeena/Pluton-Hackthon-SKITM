@@ -11,19 +11,21 @@ export default function ChatHistory() {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(true)
   const [groupedMessages, setGroupedMessages] = useState({})
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
   useEffect(() => {
-    fetchChatHistory()
-  }, [])
+    if (user?.id) fetchChatHistory()
+  }, [user?.id])
 
   async function fetchChatHistory() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/chat-history/${user.id}`)
+      const response = await fetch(`${backendUrl}/chat-history/${user.id}`)
       const data = await response.json()
-      setMessages(data.messages || [])
+      const items = data?.messages || []
+      setMessages(items)
 
       // Group messages by date
-      const grouped = data.messages.reduce((acc, msg) => {
+      const grouped = items.reduce((acc, msg) => {
         const date = new Date(msg.created_at).toDateString()
         if (!acc[date]) acc[date] = []
         acc[date].push(msg)

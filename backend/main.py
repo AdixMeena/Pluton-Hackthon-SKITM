@@ -75,10 +75,6 @@ class PersonalizedResponse(BaseModel):
     personalized_prompt: str
     response: str
 
-# Dependency to get supabase client
-def get_supabase():
-    return supabase
-
 # Function to analyze learning patterns
 def analyze_learning_pattern(user_data: UserData):
     # Simple pattern analysis based on quiz scores and time spent
