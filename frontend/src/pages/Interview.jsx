@@ -95,6 +95,7 @@ export default function Interview() {
   const [answers, setAnswers] = useState({})
   const [generating, setGenerating] = useState(false)
   const [completed, setCompleted] = useState(false)
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
   useEffect(() => {
     // Check if user already has a learning profile
@@ -123,10 +124,14 @@ export default function Interview() {
   }
 
   const generateProfile = async () => {
+    if (!user?.id) {
+      toast.error('Please sign in again to generate your profile')
+      return
+    }
     setGenerating(true)
     try {
       // Send to backend for analysis
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/generate-profile-from-interview`, {
+      const response = await fetch(`${backendUrl}/generate-profile-from-interview`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,7 +143,15 @@ export default function Interview() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to generate profile')
+        let message = 'Failed to generate profile'
+        try {
+          const err = await response.json()
+          message = err?.detail || err?.error || message
+        } catch {
+          const text = await response.text()
+          if (text) message = text
+        }
+        throw new Error(message)
       }
 
       const result = await response.json()
@@ -161,7 +174,7 @@ export default function Interview() {
 
     } catch (error) {
       console.error('Error generating profile:', error)
-      toast.error('Failed to create learning profile')
+      toast.error(error?.message || 'Failed to create learning profile')
     } finally {
       setGenerating(false)
     }

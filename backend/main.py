@@ -26,6 +26,7 @@ app.add_middleware(
         "http://localhost:5173",
         "http://localhost:5174",
         "https://landscape-delta-six.vercel.app",  # Vercel frontend URL
+        "https://landscape-pluton1.vercel.app",  # Vercel frontend URL
         os.getenv("FRONTEND_URL", "http://localhost:5173"),  # Railway frontend URL
         "https://*.up.railway.app",  # Allow all Railway domains
     ],
