@@ -340,14 +340,3 @@ src/
 - **Responsive**: Full mobile support with bottom nav
 
 ---
-
-## 🤝 GitHub Student Pack Benefits Used
-
-- ✅ **GitHub Models** — Free GPT-4o AI via Azure endpoint
-- ✅ **Vercel** — Free frontend hosting
-- ✅ **Namecheap** — Free .me domain (apply separately)
-- ✅ **Supabase** — Free tier database (25k MAU)
-
----
-
-Built with 💜 for students who want to learn smarter, not harder.
