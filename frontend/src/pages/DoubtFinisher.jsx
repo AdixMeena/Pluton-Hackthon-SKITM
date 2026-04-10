@@ -121,11 +121,11 @@ Keep responses concise and focused on the topic.`
       </div>
 
       {/* Messages */}
-      <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 16, display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 20, display: 'flex', flexDirection: 'column', gap: 18 }}>
         {messages.map((msg) => (
-          <div key={msg.id} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', flexDirection: msg.role === 'user' ? 'row-reverse' : 'row' }}>
+          <div key={msg.id} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', flexDirection: msg.role === 'user' ? 'row-reverse' : 'row' }}>
             <div style={{
-              width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
+              width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
               background: msg.role === 'user'
                 ? 'linear-gradient(135deg, #7c3aed, #4c1d95)'
                 : 'linear-gradient(135deg, #059669, #047857)',
@@ -137,18 +137,21 @@ Keep responses concise and focused on the topic.`
                 : <Bot size={16} color="white" />}
             </div>
             <div style={{
-              maxWidth: '75%',
-              padding: '14px 18px',
-              borderRadius: msg.role === 'user' ? '18px 6px 18px 18px' : '6px 18px 18px 18px',
+              maxWidth: '80%',
+              padding: '16px 20px',
+              borderRadius: msg.role === 'user' ? '18px 18px 6px 18px' : '16px',
               background: msg.role === 'user'
-                ? 'linear-gradient(135deg, rgba(124,58,237,0.25), rgba(124,58,237,0.15))'
-                : 'rgba(255,255,255,0.05)',
+                ? 'linear-gradient(135deg, rgba(124,58,237,0.28), rgba(124,58,237,0.18))'
+                : 'rgba(15, 23, 42, 0.55)',
               border: msg.role === 'user'
-                ? '1px solid rgba(124,58,237,0.3)'
-                : '1px solid rgba(255,255,255,0.08)',
-              fontSize: '0.875rem',
-              lineHeight: 1.6,
+                ? '1px solid rgba(124,58,237,0.35)'
+                : '1px solid rgba(148, 163, 184, 0.2)',
+              fontSize: '0.95rem',
+              lineHeight: 1.7,
               color: '#e2e8f0',
+              boxShadow: msg.role === 'user'
+                ? '0 10px 30px rgba(124,58,237,0.15)'
+                : '0 10px 30px rgba(2,6,23,0.35)',
             }}>
               {msg.role === 'assistant' ? (
                 <div className="markdown-body">

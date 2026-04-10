@@ -77,19 +77,19 @@ export default function ChatHistory() {
                 <span className="text-gray-400 text-sm">({msgs.length} messages)</span>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {msgs.map((msg, index) => (
                   <div key={msg.id || index} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                     {msg.role === 'assistant' && (
-                      <div className="flex-shrink-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+                      <div className="flex-shrink-0 w-9 h-9 bg-purple-600 rounded-full flex items-center justify-center">
                         <Bot size={16} className="text-white" />
                       </div>
                     )}
 
-                    <div className={`max-w-[70%] rounded-lg p-3 ${
+                    <div className={`max-w-[80%] rounded-2xl p-4 border ${
                       msg.role === 'user'
-                        ? 'bg-purple-600 text-white'
-                        : 'bg-white/10 text-gray-200'
+                        ? 'bg-purple-600/80 text-white border-purple-500/40'
+                        : 'bg-slate-900/70 text-gray-200 border-white/10'
                     }`}>
                       <div className="flex items-center gap-2 mb-1">
                         {msg.role === 'user' ? (
@@ -133,7 +133,7 @@ export default function ChatHistory() {
                     </div>
 
                     {msg.role === 'user' && (
-                      <div className="flex-shrink-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+                      <div className="flex-shrink-0 w-9 h-9 bg-purple-600 rounded-full flex items-center justify-center">
                         <User size={16} className="text-white" />
                       </div>
                     )}
